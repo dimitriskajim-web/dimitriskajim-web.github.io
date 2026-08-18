@@ -236,43 +236,14 @@
     /* ─── ABOUT ────────────────────────────────────────────── */
     .about-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: start;
+      grid-template-columns: 1fr;
+      max-width: 620px;
     }
     .about-text p {
       color: var(--muted);
       margin-bottom: 14px;
     }
     .about-text p:last-child { margin-bottom: 0; }
-    .about-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-    .stat-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 22px 20px;
-      transition: border-color var(--transition), transform var(--transition);
-    }
-    .stat-card:hover {
-      border-color: var(--indigo);
-      transform: translateY(-2px);
-    }
-    .stat-num {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--indigo-lt);
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-    .stat-label {
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
     /* ─── EXPERIENCE ───────────────────────────────────────── */
     .timeline {
       position: relative;
@@ -619,8 +590,6 @@
     }
     /* ─── RESPONSIVE ───────────────────────────────────────── */
     @media (max-width: 640px) {
-      .about-grid { grid-template-columns: 1fr; }
-      .about-stats { grid-template-columns: 1fr 1fr; }
       .project-header { flex-direction: column; gap: 8px; }
       .nav-links { gap: 18px; }
       .contact-card { padding: 32px 20px; }
@@ -675,37 +644,19 @@
       <div class="about-grid reveal">
         <div class="about-text">
           <p>
-            I'm an operations & data professional with hands-on experience in CRM-based
-            data entry, analysis, and quality assurance — and a self-taught web developer
-            building on the side.
+            I'm a data analyst and operations lead who turns messy, high-volume data into
+            systems people can actually act on — from building KPI models that scored
+            150+ employees, to leading and training a team on data quality standards.
           </p>
           <p>
-            Currently running <strong>TCG Quest Log</strong>, a multi-game trading card 
-            community platform — built and maintained entirely by me, from the database 
-            layer to the front-end.
+            Outside of that, I'm a self-taught web developer running <strong>TCG Quest Log</strong>,
+            a multi-game trading card community platform — built and maintained entirely by me,
+            from the database layer to the front-end.
           </p>
           <p>
-            I enjoy turning complex, messy data into readable systems, and shipping
-            products that people actually use.
+            I enjoy structuring complex data into clear insight, and leading teams toward
+            better, more consistent decisions.
           </p>
-        </div>
-        <div class="about-stats">
-          <div class="stat-card">
-            <div class="stat-num">4+</div>
-            <div class="stat-label">TCGs Covered</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-num">14k+</div>
-            <div class="stat-label">Cards in Database</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-num">100%</div>
-            <div class="stat-label">Solo Built</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-num">2026</div>
-            <div class="stat-label">Active & Shipping</div>
-          </div>
         </div>
       </div>
     </section>
