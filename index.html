@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,11 +24,9 @@
       --radius:    14px;
       --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
     }
-
     /* ─── RESET ────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-
     body {
       background: var(--bg);
       color: var(--white);
@@ -38,7 +35,6 @@
       line-height: 1.7;
       overflow-x: hidden;
     }
-
     /* ─── NOISE TEXTURE OVERLAY ────────────────────────────── */
     body::before {
       content: '';
@@ -49,7 +45,6 @@
       z-index: 0;
       opacity: 0.4;
     }
-
     /* ─── GRID BACKGROUND ──────────────────────────────────── */
     .grid-bg {
       position: fixed;
@@ -61,7 +56,6 @@
       pointer-events: none;
       z-index: 0;
     }
-
     /* ─── LAYOUT ───────────────────────────────────────────── */
     .wrapper {
       position: relative;
@@ -70,7 +64,6 @@
       margin: 0 auto;
       padding: 0 24px;
     }
-
     /* ─── NAV ──────────────────────────────────────────────── */
     nav {
       position: sticky;
@@ -81,7 +74,6 @@
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
-
     nav .inner {
       max-width: 860px;
       margin: 0 auto;
@@ -90,7 +82,6 @@
       align-items: center;
       justify-content: space-between;
     }
-
     .nav-logo {
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 700;
@@ -98,15 +89,13 @@
       color: var(--white);
       letter-spacing: -0.02em;
     }
-
     .nav-logo span { color: var(--indigo); }
-
     .nav-links {
       display: flex;
-      gap: 28px;
+      gap: 24px;
       list-style: none;
+      flex-wrap: wrap;
     }
-
     .nav-links a {
       font-family: 'Inter', sans-serif;
       font-size: 0.85rem;
@@ -116,15 +105,12 @@
       letter-spacing: 0.03em;
       transition: color var(--transition);
     }
-
     .nav-links a:hover { color: var(--white); }
-
     /* ─── HERO ─────────────────────────────────────────────── */
     .hero {
       padding: 110px 0 90px;
       text-align: center;
     }
-
     .hero-badge {
       display: inline-flex;
       align-items: center;
@@ -139,7 +125,6 @@
       margin-bottom: 32px;
       letter-spacing: 0.06em;
     }
-
     .hero-badge::before {
       content: '';
       width: 6px;
@@ -148,12 +133,10 @@
       background: var(--sky);
       animation: pulse 2s ease infinite;
     }
-
     @keyframes pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
       50%       { opacity: 0.4; transform: scale(0.8); }
     }
-
     .hero h1 {
       font-family: 'Space Grotesk', sans-serif;
       font-size: clamp(2.4rem, 6vw, 4rem);
@@ -162,9 +145,7 @@
       line-height: 1.1;
       margin-bottom: 8px;
     }
-
     .hero h1 .accent { color: var(--indigo-lt); }
-
     .hero-sub {
       font-family: 'JetBrains Mono', monospace;
       font-size: 1rem;
@@ -172,7 +153,6 @@
       margin-bottom: 24px;
       min-height: 1.5em;
     }
-
     .cursor {
       display: inline-block;
       width: 2px;
@@ -182,26 +162,22 @@
       margin-left: 2px;
       animation: blink 1s step-end infinite;
     }
-
     @keyframes blink {
       0%, 100% { opacity: 1; }
       50%       { opacity: 0; }
     }
-
     .hero-desc {
       max-width: 520px;
       margin: 0 auto 40px;
       color: var(--muted);
       font-size: 1.05rem;
     }
-
     .hero-ctas {
       display: flex;
       gap: 14px;
       justify-content: center;
       flex-wrap: wrap;
     }
-
     .btn {
       display: inline-flex;
       align-items: center;
@@ -216,37 +192,31 @@
       cursor: pointer;
       border: none;
     }
-
     .btn-primary {
       background: var(--indigo);
       color: #fff;
       box-shadow: 0 0 0 0 var(--glow);
     }
-
     .btn-primary:hover {
       background: var(--indigo-lt);
       box-shadow: 0 0 24px var(--glow);
       transform: translateY(-1px);
     }
-
     .btn-outline {
       background: transparent;
       color: var(--white);
       border: 1px solid var(--border);
     }
-
     .btn-outline:hover {
       border-color: var(--indigo);
       background: rgba(79,70,229,0.08);
       transform: translateY(-1px);
     }
-
     /* ─── SECTION BASE ─────────────────────────────────────── */
     section {
       padding: 80px 0;
       border-top: 1px solid var(--border);
     }
-
     .section-label {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.72rem;
@@ -255,7 +225,6 @@
       text-transform: uppercase;
       margin-bottom: 10px;
     }
-
     .section-title {
       font-family: 'Space Grotesk', sans-serif;
       font-size: clamp(1.6rem, 4vw, 2.2rem);
@@ -264,7 +233,6 @@
       margin-bottom: 40px;
       line-height: 1.2;
     }
-
     /* ─── ABOUT ────────────────────────────────────────────── */
     .about-grid {
       display: grid;
@@ -272,20 +240,16 @@
       gap: 40px;
       align-items: start;
     }
-
     .about-text p {
       color: var(--muted);
       margin-bottom: 14px;
     }
-
     .about-text p:last-child { margin-bottom: 0; }
-
     .about-stats {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
     }
-
     .stat-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -293,12 +257,10 @@
       padding: 22px 20px;
       transition: border-color var(--transition), transform var(--transition);
     }
-
     .stat-card:hover {
       border-color: var(--indigo);
       transform: translateY(-2px);
     }
-
     .stat-num {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 2rem;
@@ -307,12 +269,93 @@
       line-height: 1;
       margin-bottom: 6px;
     }
-
     .stat-label {
       font-size: 0.8rem;
       color: var(--muted);
     }
-
+    /* ─── EXPERIENCE ───────────────────────────────────────── */
+    .timeline {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      background: linear-gradient(var(--indigo), transparent 95%);
+    }
+    .exp-item {
+      position: relative;
+      padding: 0 0 36px 34px;
+    }
+    .exp-item:last-child { padding-bottom: 0; }
+    .exp-dot {
+      position: absolute;
+      left: 0;
+      top: 6px;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--indigo);
+    }
+    .exp-item.current .exp-dot {
+      background: var(--indigo);
+      box-shadow: 0 0 0 4px rgba(79,70,229,0.18);
+    }
+    .exp-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 4px 16px;
+      margin-bottom: 4px;
+    }
+    .exp-role {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .exp-dates {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--sky);
+      white-space: nowrap;
+    }
+    .exp-org {
+      font-size: 0.85rem;
+      color: var(--indigo-lt);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+    .exp-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .exp-list li {
+      position: relative;
+      padding-left: 16px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    .exp-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.65em;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--sky);
+    }
     /* ─── PROJECTS ──────────────────────────── */
     .project-card {
       background: var(--bg-card);
@@ -324,7 +367,6 @@
       overflow: hidden;
       transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
     }
-
     .project-card::before {
       content: '';
       position: absolute;
@@ -334,15 +376,12 @@
       opacity: 0;
       transition: opacity var(--transition);
     }
-
     .project-card:hover {
       border-color: rgba(79,70,229,0.5);
       transform: translateY(-3px);
       box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 0 1px var(--border);
     }
-
     .project-card:hover::before { opacity: 1; }
-
     .project-header {
       display: flex;
       align-items: flex-start;
@@ -350,12 +389,10 @@
       gap: 16px;
       margin-bottom: 14px;
     }
-
     .project-icon {
       font-size: 1.6rem;
       line-height: 1;
     }
-
     .project-title {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 1.2rem;
@@ -363,18 +400,15 @@
       letter-spacing: -0.02em;
       margin-bottom: 4px;
     }
-
     .project-type {
       font-size: 0.78rem;
       color: var(--muted);
     }
-
     .project-desc {
       color: var(--muted);
       font-size: 0.95rem;
       margin-bottom: 20px;
     }
-
     .project-footer {
       display: flex;
       align-items: center;
@@ -382,13 +416,11 @@
       flex-wrap: wrap;
       gap: 12px;
     }
-
     .tag-list {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
     }
-
     .tag {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.72rem;
@@ -398,7 +430,6 @@
       border-radius: 6px;
       padding: 4px 10px;
     }
-
     .project-link {
       display: inline-flex;
       align-items: center;
@@ -409,16 +440,100 @@
       text-decoration: none;
       transition: gap var(--transition), color var(--transition);
     }
-
     .project-link:hover { color: var(--white); gap: 10px; }
-
+    /* ─── PROJECT CAROUSEL ─────────────────────────────────── */
+    .carousel {
+      position: relative;
+      margin-bottom: 24px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #05070f;
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.45s cubic-bezier(0.4,0,0.2,1);
+    }
+    .carousel-slide {
+      flex: 0 0 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .carousel-slide img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      object-position: top;
+      background: #05070f;
+    }
+    .carousel-caption {
+      padding: 14px 18px;
+      border-top: 1px solid var(--border);
+    }
+    .carousel-caption strong {
+      display: block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+    .carousel-caption span {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .carousel-arrow {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(to right, rgba(5,7,15,0.55), transparent);
+      border: none;
+      color: var(--white);
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity var(--transition);
+      z-index: 2;
+    }
+    .carousel-arrow.next {
+      right: 0;
+      background: linear-gradient(to left, rgba(5,7,15,0.55), transparent);
+    }
+    .carousel:hover .carousel-arrow { opacity: 1; }
+    .carousel-arrow svg { width: 20px; height: 20px; }
+    .carousel-dots {
+      position: absolute;
+      bottom: 78px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      z-index: 2;
+    }
+    .carousel-dots button {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(240,244,255,0.35);
+      cursor: pointer;
+      padding: 0;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .carousel-dots button.active {
+      background: var(--sky);
+      transform: scale(1.3);
+    }
     /* ─── SKILLS ───────────────────────────────────────────── */
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 14px;
     }
-
     .skill-item {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -429,23 +544,19 @@
       gap: 12px;
       transition: border-color var(--transition), background var(--transition);
     }
-
     .skill-item:hover {
       border-color: var(--indigo);
       background: var(--bg-hover);
     }
-
     .skill-icon {
       font-size: 1.3rem;
       flex-shrink: 0;
     }
-
     .skill-name {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 0.9rem;
       font-weight: 500;
     }
-
     /* ─── CONTACT ──────────────────────────────────────────── */
     .contact-card {
       background: var(--bg-card);
@@ -456,7 +567,6 @@
       position: relative;
       overflow: hidden;
     }
-
     .contact-card::after {
       content: '';
       position: absolute;
@@ -466,7 +576,6 @@
       background: radial-gradient(circle, rgba(79,70,229,0.12), transparent 70%);
       pointer-events: none;
     }
-
     .contact-card h3 {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 1.6rem;
@@ -474,48 +583,40 @@
       letter-spacing: -0.03em;
       margin-bottom: 12px;
     }
-
     .contact-card p {
       color: var(--muted);
       max-width: 420px;
       margin: 0 auto 32px;
     }
-
     .contact-links {
       display: flex;
       justify-content: center;
       gap: 14px;
       flex-wrap: wrap;
     }
-
     /* ─── FOOTER ───────────────────────────────────────────── */
     footer {
       border-top: 1px solid var(--border);
       padding: 32px 0;
       text-align: center;
     }
-
     footer p {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.78rem;
       color: var(--muted);
       letter-spacing: 0.04em;
     }
-
     footer span { color: var(--indigo-lt); }
-
     /* ─── SCROLL REVEAL ────────────────────────────────────── */
     .reveal {
       opacity: 0;
       transform: translateY(24px);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
-
     .reveal.visible {
       opacity: 1;
       transform: translateY(0);
     }
-
     /* ─── RESPONSIVE ───────────────────────────────────────── */
     @media (max-width: 640px) {
       .about-grid { grid-template-columns: 1fr; }
@@ -523,8 +624,9 @@
       .project-header { flex-direction: column; gap: 8px; }
       .nav-links { gap: 18px; }
       .contact-card { padding: 32px 20px; }
+      .exp-head { flex-direction: column; align-items: flex-start; gap: 2px; }
+      .carousel-dots { bottom: 70px; }
     }
-
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -534,24 +636,21 @@
   </style>
 </head>
 <body>
-
   <div class="grid-bg" aria-hidden="true"></div>
-
   <!-- ── NAV ── -->
   <nav aria-label="Primary navigation">
     <div class="inner">
       <div class="nav-logo">DK<span>.</span></div>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
   </nav>
-
   <div class="wrapper">
-
     <!-- ── HERO ── -->
     <header class="hero">
       <div class="hero-badge">Open to work</div>
@@ -569,7 +668,6 @@
         <a href="#contact" class="btn btn-outline">Get in Touch</a>
       </div>
     </header>
-
     <!-- ── ABOUT ── -->
     <section id="about">
       <div class="section-label">01 — About</div>
@@ -577,8 +675,9 @@
       <div class="about-grid reveal">
         <div class="about-text">
           <p>
-            I'm a data analyst with a hands-on approach to building things on the web.
-            I work at the intersection of structured data, content systems, and front-end development.
+            I'm an operations & data professional with hands-on experience in CRM-based
+            data entry, analysis, and quality assurance — and a self-taught web developer
+            building on the side.
           </p>
           <p>
             Currently running <strong>TCG Quest Log</strong>, a multi-game trading card 
@@ -586,8 +685,8 @@
             layer to the front-end.
           </p>
           <p>
-            I enjoy turning complex data into readable experiences and shipping products 
-            that people actually use.
+            I enjoy turning complex, messy data into readable systems, and shipping
+            products that people actually use.
           </p>
         </div>
         <div class="about-stats">
@@ -610,12 +709,61 @@
         </div>
       </div>
     </section>
+    <!-- ── EXPERIENCE ── -->
+    <section id="experience">
+      <div class="section-label">02 — Experience</div>
+      <h2 class="section-title">Where I've Worked</h2>
+      <div class="timeline reveal">
 
+        <div class="exp-item current">
+          <span class="exp-dot"></span>
+          <div class="exp-head">
+            <span class="exp-role">Document & Data Management Specialist</span>
+            <span class="exp-dates">June 2025 — Present</span>
+          </div>
+          <div class="exp-org">IID S.A</div>
+          <ul class="exp-list">
+            <li>Manage digital records within a document management and CRM environment.</li>
+            <li>Perform document indexing, data extraction, and image editing to maintain high-quality digital archives.</li>
+            <li>Execute QA procedures on scanned documents using FastStone, ensuring compliance with data accuracy and handling standards.</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <span class="exp-dot"></span>
+          <div class="exp-head">
+            <span class="exp-role">Data Operations Team Leader</span>
+            <span class="exp-dates">Mar 2024 — May 2025</span>
+          </div>
+          <div class="exp-org">Iron Mountain S.A</div>
+          <ul class="exp-list">
+            <li>Planned and coordinated daily production schedules to keep workflow efficient across the team.</li>
+            <li>Built an Excel-based KPI system for 151 employees, combining productivity and quality metrics into a single composite performance score.</li>
+            <li>Wrote manuals covering every role and scenario for the DMS team, and led ongoing training to keep output quality consistent.</li>
+            <li>Proposed and developed new procedures for personnel management and performance evaluation.</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <span class="exp-dot"></span>
+          <div class="exp-head">
+            <span class="exp-role">Data Operations & QA Specialist</span>
+            <span class="exp-dates">Aug 2019 — Mar 2023</span>
+          </div>
+          <div class="exp-org">Desquared S.A</div>
+          <ul class="exp-list">
+            <li>Performed data entry and analysis using CRM software, with QA checks to ensure accurate formatting.</li>
+            <li>Tested new software features during development, documenting results and feeding back improvement recommendations.</li>
+            <li>Acted as primary point of contact for several major Greek fast-food chains — managing online catalogues, live menu updates, and client support.</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
     <!-- ── PROJECTS ── -->
     <section id="projects">
-      <div class="section-label">02 — Projects</div>
+      <div class="section-label">03 — Projects</div>
       <h2 class="section-title">What I've Built</h2>
-
       <div class="project-card reveal">
         <div class="project-header">
           <div>
@@ -626,11 +774,60 @@
             <div class="project-type">Full-Stack Web Platform</div>
           </div>
         </div>
+
+        <!-- Carousel -->
+        <div class="carousel" id="tcgql-carousel">
+          <div class="carousel-track" id="tcgql-track">
+            <div class="carousel-slide">
+              <img src="assets/img/tcgql-1-hub.png" alt="TCG Quest Log homepage hub with per-game navigation for Yu-Gi-Oh, Pokémon, One Piece, Magic and Warhammer 40K" loading="lazy" />
+              <div class="carousel-caption">
+                <strong>Multi-Game Hub</strong>
+                <span>One landing page routing into five TCG verticals, with a live video spotlight and a built-in deck-builder search bar.</span>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <img src="assets/img/tcgql-2-spotlight.png" alt="Yu-Gi-Oh product spotlight widget for the Legendary Arc-V Decks release, with an Ask AI budget assistant" loading="lazy" />
+              <div class="carousel-caption">
+                <strong>Product Spotlight Widget</strong>
+                <span>Auto-populated release coverage with stat callouts and sourcing — paired with an "Ask AI" assistant for budget-conscious readers.</span>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <img src="assets/img/tcgql-3-mtg-meta.png" alt="Magic the Gathering competitive meta dashboard with a donut chart and tier list across five formats" loading="lazy" />
+              <div class="carousel-caption">
+                <strong>MTG Meta Dashboard</strong>
+                <span>Aggregated tournament data across five formats into a tier list, archetype bar chart, and meta-share donut — refreshed on a rolling 90-day window.</span>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <img src="assets/img/tcgql-4-ygo-tier.png" alt="Yu-Gi-Oh tier list showing meta share bars for the current Chaos Origins format" loading="lazy" />
+              <div class="carousel-caption">
+                <strong>YGO Format Tracker</strong>
+                <span>Post-release meta breakdown pulling real tournament tops into ranked, color-coded tier bands.</span>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <img src="assets/img/tcgql-5-op-tier.png" alt="One Piece TCG OP-16 leader tier list ranked by win rate with linked video deck guides" loading="lazy" />
+              <div class="carousel-caption">
+                <strong>One Piece Leader Rankings</strong>
+                <span>Every OP-16 leader ranked by win rate and tournament performance, each linking out to a video deck guide.</span>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-arrow prev" aria-label="Previous slide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="carousel-arrow next" aria-label="Next slide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+          <div class="carousel-dots" id="tcgql-dots"></div>
+        </div>
+
         <p class="project-desc">
-          A multi-TCG fan hub covering Yu-Gi-Oh!, Pokémon, One Piece, and Warhammer 40K.
-          Features include live card databases (14k+ YGO, 2.4k+ One Piece cards), 
-          interactive deck builders, meta analysis pages, news aggregation, and REST APIs — 
-          all built and operated solo.
+          A multi-TCG fan hub covering Yu-Gi-Oh!, Pokémon, One Piece, Magic the Gathering, 
+          and Warhammer 40K. Features live card databases (14k+ YGO, 2.4k+ One Piece cards), 
+          interactive deck builders, meta tier lists sourced from real tournament data, 
+          news aggregation, and REST APIs — all built and operated solo.
         </p>
         <div class="project-footer">
           <div class="tag-list">
@@ -647,12 +844,10 @@
           </a>
         </div>
       </div>
-
     </section>
-
     <!-- ── SKILLS ── -->
     <section id="skills">
-      <div class="section-label">03 — Skills</div>
+      <div class="section-label">04 — Skills</div>
       <h2 class="section-title">What I Work With</h2>
       <div class="skills-grid reveal">
         <div class="skill-item">
@@ -685,29 +880,28 @@
         </div>
         <div class="skill-item">
           <span class="skill-icon">🛠️</span>
-          <span class="skill-name">WordPress / CMS</span>
+          <span class="skill-name">WordPress / Elementor</span>
         </div>
         <div class="skill-item">
           <span class="skill-icon">📊</span>
           <span class="skill-name">Power BI</span>
         </div>
-        
+
       </div>
     </section>
-
     <!-- ── CONTACT ── -->
     <section id="contact">
-      <div class="section-label">04 — Contact</div>
+      <div class="section-label">05 — Contact</div>
       <h2 class="section-title">Get in Touch</h2>
       <div class="contact-card reveal">
         <h3>Let's work together</h3>
         <p>Open to freelance data projects, web collaborations, or just a good conversation about TCGs.</p>
         <div class="contact-links">
-          <a href="https://github.com/dimitriskarjim-web" target="_blank" rel="noopener" class="btn btn-outline">
+          <a href="https://github.com/dimitriskajim-web" target="_blank" rel="noopener" class="btn btn-outline">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
             GitHub
           </a>
-          <a href="https://linkedin.com/in/" target="_blank" rel="noopener" class="btn btn-outline">
+          <a href="https://www.linkedin.com/in/dkaragkounis" target="_blank" rel="noopener" class="btn btn-outline">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
             LinkedIn
           </a>
@@ -718,16 +912,13 @@
         </div>
       </div>
     </section>
-
   </div><!-- /wrapper -->
-
   <!-- ── FOOTER ── -->
   <footer>
     <div class="wrapper">
       <p>© 2026 <span>Dimitris Karagounis</span> — Built with intent, not a template.</p>
     </div>
   </footer>
-
   <script>
     // ── Typewriter
     const phrases = [
@@ -738,7 +929,6 @@
     ];
     const el = document.getElementById('typewriter');
     let pi = 0, ci = 0, deleting = false;
-
     function type() {
       const phrase = phrases[pi];
       if (!deleting) {
@@ -758,10 +948,8 @@
       }
       setTimeout(() => requestAnimationFrame(tick), deleting ? 45 : 80);
     }
-
     function tick() { type(); }
     setTimeout(tick, 600);
-
     // ── Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
@@ -773,7 +961,55 @@
       });
     }, { threshold: 0.12 });
     reveals.forEach(r => observer.observe(r));
-  </script>
 
+    // ── TCG Quest Log carousel
+    (function () {
+      const track = document.getElementById('tcgql-track');
+      const dotsWrap = document.getElementById('tcgql-dots');
+      const carousel = document.getElementById('tcgql-carousel');
+      if (!track) return;
+      const slides = track.children.length;
+      let index = 0;
+      let timer = null;
+
+      for (let i = 0; i < slides; i++) {
+        const dot = document.createElement('button');
+        dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+        if (i === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goTo(i));
+        dotsWrap.appendChild(dot);
+      }
+      const dots = dotsWrap.querySelectorAll('button');
+
+      function goTo(i) {
+        index = (i + slides) % slides;
+        track.style.transform = 'translateX(-' + (index * 100) + '%)';
+        dots.forEach((d, di) => d.classList.toggle('active', di === index));
+      }
+      function next() { goTo(index + 1); }
+      function prev() { goTo(index - 1); }
+
+      carousel.querySelector('.carousel-arrow.next').addEventListener('click', () => { next(); restart(); });
+      carousel.querySelector('.carousel-arrow.prev').addEventListener('click', () => { prev(); restart(); });
+
+      function restart() {
+        clearInterval(timer);
+        timer = setInterval(next, 6000);
+      }
+      restart();
+      carousel.addEventListener('mouseenter', () => clearInterval(timer));
+      carousel.addEventListener('mouseleave', restart);
+
+      // basic swipe support
+      let startX = null;
+      track.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
+      track.addEventListener('touchend', (e) => {
+        if (startX === null) return;
+        const dx = e.changedTouches[0].clientX - startX;
+        if (Math.abs(dx) > 40) { dx > 0 ? prev() : next(); restart(); }
+        startX = null;
+      });
+    })();
+  </script>
 </body>
 </html>
