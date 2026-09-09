@@ -1,0 +1,294 @@
+/* ══ Meridian Club — design tokens, typography, cards, chips, buttons ══════
+   The look is a business hotel's members' card room: ink and charcoal, walnut
+   panelling, brass fittings, cream stationery. No neon, no casino red. */
+
+:root {
+  /* surfaces */
+  --ink:        #0b0e13;
+  --ink-2:      #10151d;
+  --panel:      #161c26;
+  --panel-2:    #1e2634;
+  --walnut:     #2a1d14;
+  --walnut-2:   #3d2a1c;
+
+  /* felt */
+  --felt:       #17362f;
+  --felt-2:     #0f2620;
+  --felt-edge:  #0a1a16;
+
+  /* brass */
+  --brass:      #c9a24a;
+  --brass-lt:   #e8ce8f;
+  --brass-dk:   #8c6b26;
+
+  /* type */
+  --ivory:      #f2ece1;
+  --parchment:  #d9d0c1;
+  --muted:      #8b93a1;
+  --muted-2:    #5f6674;
+
+  /* signals — muted, in keeping with the room */
+  --win:        #7fb98a;
+  --danger:     #b4565a;
+  --danger-dk:  #7d3a3d;
+
+  --radius:     14px;
+  --radius-sm:  9px;
+  --ease:       cubic-bezier(0.32, 0.72, 0.28, 1);
+
+  --safe-top:    env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Author `display` rules outrank the user agent's [hidden] rule, so state it
+   here once rather than remembering it at every call site. */
+[hidden] { display: none !important; }
+
+html, body {
+  height: 100%;
+  overscroll-behavior: none;
+}
+
+body {
+  background: var(--ink);
+  color: var(--ivory);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 15px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  overflow: hidden;
+}
+
+/* A faint paper grain over everything, the way good print stock reads. */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.35;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+h1, h2, h3, .display {
+  font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.label {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.note {
+  font-size: 12.5px;
+  color: var(--muted);
+  margin: -4px 0 12px;
+}
+
+.section-title {
+  font-size: 21px;
+  color: var(--parchment);
+  margin: 22px 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(201,162,74,0.4), transparent);
+}
+
+/* numbers line up in columns when they are tabular */
+.wallet-amount, .stack, .pot-display strong, #raise-value, .seat-stack, .bet-chip span {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── buttons ────────────────────────────────────────────────────────────── */
+.btn {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ivory);
+  background: var(--panel-2);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: transform 0.12s var(--ease), filter 0.18s var(--ease), opacity 0.18s;
+  touch-action: manipulation;
+}
+.btn:active:not(:disabled) { transform: scale(0.97); }
+.btn:disabled { opacity: 0.32; cursor: default; }
+
+.btn-brass {
+  background: linear-gradient(175deg, var(--brass-lt), var(--brass) 46%, var(--brass-dk));
+  color: #2b1f08;
+  border-color: rgba(255,255,255,0.28);
+  box-shadow: 0 2px 0 rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.5);
+  text-shadow: 0 1px 0 rgba(255,255,255,0.25);
+}
+.btn-fold {
+  background: linear-gradient(175deg, #2c333f, #1a1f28);
+  border-color: rgba(180,86,90,0.35);
+  color: var(--parchment);
+}
+.btn-call {
+  background: linear-gradient(175deg, #24404a, #16272e);
+  border-color: rgba(126,183,200,0.28);
+}
+.btn-ghost { background: transparent; border-color: rgba(255,255,255,0.14); color: var(--parchment); }
+.btn-quiet { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.09); }
+.btn-sm  { padding: 9px 14px; font-size: 13px; }
+.btn-xs  { padding: 7px 4px; font-size: 11.5px; letter-spacing: 0.06em; }
+.btn-wide { width: 100%; }
+
+.icon-btn {
+  width: 38px; height: 38px;
+  display: grid; place-items: center;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 50%;
+  color: var(--parchment);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* ── playing cards ──────────────────────────────────────────────────────── */
+.card {
+  position: relative;
+  width: var(--card-w, 42px);
+  height: calc(var(--card-w, 42px) * 1.4);
+  border-radius: calc(var(--card-w, 42px) * 0.11);
+  background: linear-gradient(168deg, #fffdf8, #ece3d2);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.45), inset 0 0 0 1px rgba(0,0,0,0.09);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+  color: #16181c;
+  line-height: 1;
+  overflow: hidden;
+  flex: none;
+}
+.card .rank { font-size: calc(var(--card-w, 42px) * 0.52); letter-spacing: -0.02em; }
+.card .pip  { font-size: calc(var(--card-w, 42px) * 0.36); margin-top: 2px; }
+.card[data-suit="h"], .card[data-suit="d"] { color: #a3232b; }
+.card[data-suit="c"], .card[data-suit="s"] { color: #16181c; }
+
+/* corner index, like a real deck */
+.card::before {
+  content: attr(data-index);
+  position: absolute;
+  top: 3px; left: 4px;
+  font-size: calc(var(--card-w, 42px) * 0.24);
+  font-weight: 700;
+  opacity: 0.75;
+}
+
+.card.back {
+  background:
+    repeating-linear-gradient(45deg, rgba(201,162,74,0.16) 0 3px, transparent 3px 6px),
+    linear-gradient(168deg, #23303c, #16202a);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(201,162,74,0.35);
+}
+.card.back::before { content: none; }
+.card.back::after {
+  content: 'MC';
+  font-size: calc(var(--card-w, 42px) * 0.3);
+  color: rgba(201,162,74,0.7);
+  letter-spacing: 0.05em;
+}
+/* alternate backs, unlocked from the cashier */
+.card.back[data-back="oxblood"] {
+  background:
+    repeating-linear-gradient(45deg, rgba(226,197,138,0.14) 0 3px, transparent 3px 6px),
+    linear-gradient(168deg, #4a1d20, #2a1013);
+}
+.card.back[data-back="ivory"] {
+  background:
+    repeating-linear-gradient(45deg, rgba(120,96,44,0.16) 0 3px, transparent 3px 6px),
+    linear-gradient(168deg, #e8e0d0, #cabfa9);
+}
+.card.back[data-back="ivory"]::after { color: rgba(90,68,24,0.8); }
+.card.back[data-back="midnight"] {
+  background:
+    repeating-linear-gradient(45deg, rgba(140,170,220,0.13) 0 3px, transparent 3px 6px),
+    linear-gradient(168deg, #141c34, #090d19);
+}
+
+.card.dim { filter: brightness(0.5) saturate(0.6); }
+.card.highlight {
+  box-shadow: 0 0 0 2px var(--brass), 0 4px 14px rgba(201,162,74,0.4);
+  transform: translateY(-3px);
+}
+.card.placeholder {
+  background: rgba(255,255,255,0.03);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+}
+
+/* ── chips ──────────────────────────────────────────────────────────────── */
+.chip-dot {
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  display: inline-block;
+  background: radial-gradient(circle at 35% 30%, var(--brass-lt), var(--brass) 55%, var(--brass-dk));
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,0.35), 0 1px 2px rgba(0,0,0,0.5);
+  flex: none;
+}
+
+.bet-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(8,12,16,0.78);
+  border: 1px solid rgba(201,162,74,0.42);
+  border-radius: 999px;
+  padding: 3px 9px 3px 5px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--brass-lt);
+  backdrop-filter: blur(3px);
+  white-space: nowrap;
+}
+.bet-chip .chip-dot { width: 10px; height: 10px; }
+
+/* ── toast ──────────────────────────────────────────────────────────────── */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(96px + var(--safe-bottom));
+  transform: translateX(-50%);
+  background: rgba(12,16,22,0.94);
+  border: 1px solid rgba(201,162,74,0.4);
+  color: var(--parchment);
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  z-index: 500;
+  animation: toast-in 0.24s var(--ease);
+}
+@keyframes toast-in {
+  from { opacity: 0; transform: translate(-50%, 8px); }
+  to   { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

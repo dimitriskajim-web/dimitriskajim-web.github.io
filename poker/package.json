@@ -1,0 +1,12 @@
+{
+  "name": "meridian-club-poker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Meridian Club - mobile No-Limit Texas Hold'em table (business hotel theme)",
+  "scripts": {
+    "test": "node test/run.js",
+    "sim": "node test/simulate.js",
+    "serve": "python3 -m http.server 4173"
+  }
+}

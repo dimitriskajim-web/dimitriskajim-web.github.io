@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Meridian Club">
+  <defs>
+    <linearGradient id="plate" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1a222e"/>
+      <stop offset="1" stop-color="#0b0e13"/>
+    </linearGradient>
+    <linearGradient id="brass" x1="0.2" y1="0" x2="0.8" y2="1">
+      <stop offset="0" stop-color="#e8ce8f"/>
+      <stop offset="0.5" stop-color="#c9a24a"/>
+      <stop offset="1" stop-color="#8c6b26"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#plate)"/>
+  <rect x="26" y="26" width="460" height="460" rx="92" fill="none" stroke="url(#brass)" stroke-width="6" opacity="0.55"/>
+  <path d="M256 132c-46 46-84 74-84 118a84 84 0 0 0 168 0c0-44-38-72-84-118z" fill="url(#brass)" opacity="0.22"/>
+  <text x="256" y="312" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif"
+        font-size="196" font-weight="700" letter-spacing="4" fill="url(#brass)">MC</text>
+  <text x="256" y="392" text-anchor="middle" font-family="Helvetica, Arial, sans-serif"
+        font-size="34" letter-spacing="14" fill="#8b93a1">MERIDIAN</text>
+</svg>
