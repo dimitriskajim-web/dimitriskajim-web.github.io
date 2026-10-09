@@ -25,6 +25,7 @@ import shutil
 import subprocess
 import sys
 import time
+import unicodedata
 import urllib.request
 from pathlib import Path
 
@@ -72,6 +73,10 @@ FONT_FILES = {
     "Rajdhani-Bold.ttf": ("Rajdhani", 700),
     "Exo2-Bold.ttf": ("Exo 2", 700),
     "Exo2-ExtraBold.ttf": ("Exo 2", 800),
+    # Rajdhani and Exo 2 have no Greek or Cyrillic letters; these similar
+    # fonts are used automatically for names that need them.
+    "FiraSansExtraCondensed-Bold.ttf": ("Fira Sans Extra Condensed", 700),
+    "Play-Bold.ttf": ("Play", 700),
 }
 FALLBACK_FONTS = [
     "DejaVuSans-Bold.ttf",
@@ -129,12 +134,41 @@ def load_font(filename, size):
     return font
 
 
-def heading_font(size):
+_glyph_cache = {}
+
+
+def has_glyphs(filename, text):
+    """True if the font has a real glyph for every character in text."""
+    font = load_font(filename, 40)
+    missing = bytes(font.getmask("\U0010FFFD"))   # what a missing glyph looks like
+    for ch in set(text):
+        if ch.isspace():
+            continue
+        key = (filename, ch)
+        if key not in _glyph_cache:
+            _glyph_cache[key] = bytes(font.getmask(ch)) != missing
+        if not _glyph_cache[key]:
+            return False
+    return True
+
+
+def heading_font(size, text=""):
+    if text and not has_glyphs("Rajdhani-Bold.ttf", text):
+        return load_font("FiraSansExtraCondensed-Bold.ttf", size)
     return load_font("Rajdhani-Bold.ttf", size)
 
 
-def name_font(size):
+def name_font(size, text=""):
+    if text and not has_glyphs("Exo2-ExtraBold.ttf", text):
+        return load_font("Play-Bold.ttf", size)
     return load_font("Exo2-ExtraBold.ttf", size)
+
+
+def display_upper(text):
+    """Uppercase for the reveal. Greek capitals drop their accent marks
+    (Ορέστης -> ΟΡΕΣΤΗΣ), as is standard in Greek all-caps text."""
+    decomposed = unicodedata.normalize("NFD", text.upper())
+    return unicodedata.normalize("NFC", decomposed.replace("\u0301", "").replace("\u0342", ""))
 
 
 def text_image(text, font, fill, stroke=0, stroke_fill=NAVY):
@@ -152,13 +186,13 @@ def fit_font(text, font_fn, max_size, min_size, max_width, stroke_ratio=0.0):
     probe = ImageDraw.Draw(Image.new("L", (1, 1)))
     size = max_size
     while size > min_size:
-        font = font_fn(size)
+        font = font_fn(size, text)
         l, _, r, _ = probe.textbbox((0, 0), text, font=font,
                                     stroke_width=int(size * stroke_ratio))
         if r - l <= max_width:
             break
         size -= 2
-    return font_fn(size), size
+    return font_fn(size, text), size
 
 
 # ---------------------------------------------------------------- photos
@@ -428,9 +462,10 @@ class Renderer:
         return text_image(self.s["reveal_title"], font, GOLD, stroke=max(3, int(size * 0.07)))
 
     def build_name(self, name):
-        font, size = fit_font(name.upper(), heading_font, int(200 * self.k),
+        name = display_upper(name)
+        font, size = fit_font(name, heading_font, int(200 * self.k),
                               int(60 * self.k), self.W - 100 * self.k, 0.06)
-        return text_image(name.upper(), font, WHITE, stroke=max(4, int(size * 0.06)),
+        return text_image(name, font, WHITE, stroke=max(4, int(size * 0.06)),
                           stroke_fill=PURPLE)
 
     def _build_watermark(self):
@@ -692,7 +727,9 @@ def encode_clip(job):
 # ---------------------------------------------------------------- config / CLI
 
 def slug(name):
-    return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-") or "cat"
+    # Keeps letters from any alphabet, so "Ορέστης" -> wheel_ορέστης_full.mp4
+    name = unicodedata.normalize("NFC", name).lower()
+    return re.sub(r"[\W_]+", "-", name).strip("-") or "cat"
 
 
 def load_config(path):
@@ -737,8 +774,9 @@ def make_placeholders(cats):
         d = ImageDraw.Draw(img)
         r = min(w, h) * 0.42
         d.ellipse((w / 2 - r, h / 2 - r, w / 2 + r, h / 2 + r), fill=color)
-        font = heading_font(int(r * 1.3))
-        d.text((w / 2, h / 2), cat["name"][0].upper(), font=font, fill=WHITE, anchor="mm")
+        letter = display_upper(cat["name"][0])
+        font = heading_font(int(r * 1.3), letter)
+        d.text((w / 2, h / 2), letter, font=font, fill=WHITE, anchor="mm")
         exif = None
         if i % 5 == 3:
             # store rotated with an EXIF orientation tag, like a phone photo
@@ -810,7 +848,7 @@ def main():
 
     targets = list(range(len(cats)))
     if args.cat:
-        targets = [i for i, c in enumerate(cats) if c["name"].lower() == args.cat.lower()]
+        targets = [i for i, c in enumerate(cats) if slug(c["name"]) == slug(args.cat)]
         if not targets:
             sys.exit(f"No cat named {args.cat!r}. Known: {', '.join(c['name'] for c in cats)}")
     styles = ["full", "green"] if args.style == "both" else [args.style]

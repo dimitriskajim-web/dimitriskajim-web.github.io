@@ -1,6 +1,6 @@
 {
   "settings": {
-    "fps": 30,
+    "fps": 60,
     "idle_seconds": 0.3,
     "spin_seconds": 3.5,
     "reveal_seconds": 1.2,
@@ -12,10 +12,10 @@
     "watermark_text": "tcgquestlog.com"
   },
   "cats": [
-    { "name": "Luna",   "photo": "cats/luna.jpg" },
-    { "name": "Mochi",  "photo": "cats/mochi.jpg" },
-    { "name": "Pixel",  "photo": "cats/pixel.jpg" },
-    { "name": "Nugget", "photo": "cats/nugget.jpg", "center": [0.5, 0.4] },
-    { "name": "Salem",  "photo": "cats/salem.jpg" }
+    { "name": "ChiChi",   "photo": "cats/luna.jpg" },
+    { "name": "Oli",  "photo": "cats/mochi.jpg" },
+    { "name": "Nino",  "photo": "cats/pixel.jpg" },
+    { "name": "Coockie", "photo": "cats/nugget.jpg", "center": [0.5, 0.4] },
+    { "name": "Ορέστης",  "photo": "cats/salem.jpg" }
   ]
 }

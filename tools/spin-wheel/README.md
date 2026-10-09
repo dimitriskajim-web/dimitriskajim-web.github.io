@@ -56,6 +56,12 @@ python wheel.py                            # encode every clip
 ]
 ```
 
+Names can use any alphabet. Rajdhani and Exo 2 have no Greek or Cyrillic
+letters, so names that need them switch automatically to similar fonts (Fira Sans
+Extra Condensed for the reveal, Play on the wheel). In the reveal, Greek capitals
+drop their accents (Ορέστης → ΟΡΕΣΤΗΣ). The file is named
+`wheel_ορέστης_full.mp4`, and `--cat Ορέστης` (or `--cat ορέστης`) builds just that cat.
+
 `center` is optional. It moves the crop when the face isn't centred: `[x, y]`
 from 0 to 1, so `[0.5, 0.4]` shifts it a little toward the top of the photo.
 
@@ -82,7 +88,7 @@ stops inside the right cat's slice, but never exactly on its centre line. Set
 
 | key | default | what it does |
 |---|---|---|
-| `fps` | 30 | frames per second |
+| `fps` | 30 | frames per second (60 is smoother but takes about twice as long to render) |
 | `idle_seconds` / `spin_seconds` / `reveal_seconds` | 0.3 / 3.5 / 1.2 | timing |
 | `rotations` | 5 | full turns before it lands |
 | `easing` | `quint` | `quint` (very slow, dramatic ending) or `cubic` (gentler) |
