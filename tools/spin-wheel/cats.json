@@ -12,10 +12,10 @@
     "watermark_text": "tcgquestlog.com"
   },
   "cats": [
-    { "name": "ChiChi",   "photo": "cats/luna.jpg" },
-    { "name": "Oli",  "photo": "cats/mochi.jpg" },
-    { "name": "Nino",  "photo": "cats/pixel.jpg" },
-    { "name": "Coockie", "photo": "cats/nugget.jpg", "center": [0.5, 0.4] },
-    { "name": "Ορέστης",  "photo": "cats/salem.jpg" }
+    { "name": "Orestis", "photo": "cats/orestis.webp" },
+    { "name": "Cookie",  "photo": "cats/cookie.webp" },
+    { "name": "Oli",     "photo": "cats/oli.webp" },
+    { "name": "Chichi",  "photo": "cats/chichi.webp" },
+    { "name": "Ninos",   "photo": "cats/ninos.webp" }
   ]
 }

@@ -44,9 +44,14 @@ python wheel.py                            # encode every clip
 ## Add your cats
 
 1. Put a photo of each cat in `cats/`. Any size, orientation or format works
-   (JPG, PNG, HEIC exported as JPG...). Phone rotation (EXIF) is handled. The
+   (JPG, PNG, WebP, HEIC exported as JPG...). Phone rotation (EXIF) is handled. The
    photo is cropped to a centred square and then to a circle, so keep the face
    near the middle.
+
+   **Cut-out heads** (PNG or WebP with a transparent background) work best. The
+   whole head, ears included, is fitted inside the circle on a light lavender
+   badge. Whiskers are ignored when sizing. Change how much of the circle the
+   head fills with `"cutout_fill"` (default 0.92), or per cat with `"fill"`.
 2. List them in `cats.json` (2 to 10 cats):
 
 ```json
@@ -62,7 +67,7 @@ Extra Condensed for the reveal, Play on the wheel). In the reveal, Greek capital
 drop their accents (Ορέστης → ΟΡΕΣΤΗΣ). The file is named
 `wheel_ορέστης_full.mp4`, and `--cat Ορέστης` (or `--cat ορέστης`) builds just that cat.
 
-`center` is optional. It moves the crop when the face isn't centred: `[x, y]`
+`center` (regular photos) and `fill` (cut-out heads) are optional. `center` moves the crop when the face isn't centred: `[x, y]`
 from 0 to 1, so `[0.5, 0.4]` shifts it a little toward the top of the photo.
 
 3. Delete the placeholder images you replaced. You don't have to delete them if
@@ -100,6 +105,8 @@ stops inside the right cat's slice, but never exactly on its centre line. Set
 | `motion_blur` | `true` | blur while spinning fast |
 | `pointer_tick` | `true` | pointer flicks as each divider passes |
 | `green_despill_photos` | `true` | strips green tints from photos in the green version (see below) |
+| `cutout_fill` | 0.92 | how much of the circle a cut-out head fills (lower = smaller head, more ear room) |
+| `photo_background` | `#ede9fe` | circle colour behind cut-out heads and transparent photos |
 | `crf` | 18 | H.264 quality (lower = bigger, sharper) |
 
 ## Using the green version in CapCut

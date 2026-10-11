@@ -64,6 +64,8 @@ DEFAULT_SETTINGS = {
     "confetti": True,
     "pointer_tick": True,
     "green_despill_photos": True,  # remove green tints from photos in the green version
+    "cutout_fill": 0.92,           # cut-out heads (transparent PNG/WebP): share of the circle the head fills
+    "photo_background": "#ede9fe", # circle colour behind cut-out heads
     "crf": 18,
     "output_dir": "output",
 }
@@ -197,14 +199,34 @@ def fit_font(text, font_fn, max_size, min_size, max_width, stroke_ratio=0.0):
 
 # ---------------------------------------------------------------- photos
 
-def load_photo(path, diameter, center=(0.5, 0.5), despill=False):
+def fit_cutout(img, fill, background):
+    """For a cut-out head with a transparent background: centre the whole head
+    in a square so it fills `fill` of the circle (ears included), on `background`."""
+    alpha = img.getchannel("A").point(lambda a: 255 if a > 128 else 0)
+    # an opening removes thin whiskers so they don't count toward the head size
+    head = alpha.filter(ImageFilter.MinFilter(9)).filter(ImageFilter.MaxFilter(9)).getbbox()
+    if head is None:
+        head = alpha.getbbox() or (0, 0, img.width, img.height)
+    img = img.crop(head)
+    w, h = img.size
+    side = int(max(w, h) / fill)
+    canvas = Image.new("RGBA", (side, side), background + (255,))
+    canvas.alpha_composite(img, ((side - w) // 2, min(side - h, (side - h) // 2 + int(side * 0.03))))
+    return canvas
+
+
+def load_photo(path, diameter, center=(0.5, 0.5), despill=False,
+               cutout_fill=0.92, background=(237, 233, 254)):
     """Open a photo, fix EXIF rotation, crop to a centred square, circle-mask it."""
     img = Image.open(path)
     img = ImageOps.exif_transpose(img)
-    if img.mode in ("RGBA", "LA", "P"):
+    if img.mode in ("RGBA", "LA", "P", "PA"):
         img = img.convert("RGBA")
-        bg = Image.new("RGBA", img.size, NAVY + (255,))
-        img = Image.alpha_composite(bg, img)
+        if img.getchannel("A").getextrema()[0] < 128:
+            img = fit_cutout(img, cutout_fill, background)
+        else:
+            bg = Image.new("RGBA", img.size, background + (255,))
+            img = Image.alpha_composite(bg, img)
     img = img.convert("RGB")
     img = ImageOps.fit(img, (diameter, diameter), Image.LANCZOS, centering=center)
     if despill:
@@ -368,6 +390,8 @@ class Renderer:
                         px + rho + ring + 3 * k, py + rho + ring + 3 * k), fill=NAVY)
             ld.ellipse((px - rho - ring, py - rho - ring, px + rho + ring, py + rho + ring), fill=GOLD)
             photo = load_photo(cat["photo_path"], 2 * rho, cat.get("center", (0.5, 0.5)),
+                               cutout_fill=cat.get("fill", self.s["cutout_fill"]),
+                               background=hex_rgb(self.s["photo_background"]),
                                despill=self.style == "green" and self.s["green_despill_photos"])
             layer.alpha_composite(photo, (int(px - rho), int(py - rho)))
 
@@ -537,6 +561,11 @@ class Renderer:
         over_navy.alpha_composite(fg)
         hard = fg.getchannel("A").point(lambda a: 255 if a > 15 else 0)
         return Image.composite(over_navy.convert("RGB"), self.background, hard)
+
+
+def hex_rgb(value):
+    value = value.lstrip("#")
+    return tuple(int(value[i:i + 2], 16) for i in (0, 2, 4))
 
 
 def scaled(img, scale):
