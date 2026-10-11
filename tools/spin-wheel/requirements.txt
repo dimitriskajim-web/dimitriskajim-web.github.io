@@ -1,0 +1,4 @@
+Pillow>=10.1
+numpy>=1.24
+# Optional: bundles an ffmpeg binary if you don't have ffmpeg installed system-wide.
+imageio-ffmpeg>=0.4.9

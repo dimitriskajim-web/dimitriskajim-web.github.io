@@ -1,0 +1,21 @@
+{
+  "settings": {
+    "fps": 60,
+    "idle_seconds": 0.3,
+    "spin_seconds": 3.5,
+    "reveal_seconds": 1.2,
+    "rotations": 5,
+    "easing": "quint",
+    "seed": null,
+    "reveal_title": "TODAY'S VICTIM:",
+    "watermark": true,
+    "watermark_text": "tcgquestlog.com"
+  },
+  "cats": [
+    { "name": "Orestis", "photo": "cats/orestis.webp" },
+    { "name": "Cookie",  "photo": "cats/cookie.webp" },
+    { "name": "Oli",     "photo": "cats/oli.webp" },
+    { "name": "Chichi",  "photo": "cats/chichi.webp" },
+    { "name": "Ninos",   "photo": "cats/ninos.webp" }
+  ]
+}
